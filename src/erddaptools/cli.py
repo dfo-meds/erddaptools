@@ -33,17 +33,14 @@ def update(dataset_id, xml_file, is_active, dfm: DatasetFileManager = None):
 @click.argument("dataset_type")
 @click.argument("dataset_id")
 @click.argument("xml_file")
-@click.option("--active", "is_active", flag_value="1")
+@click.option("--active", "is_active", flag_value="1", default=True)
 @click.option("--inactive", "is_active", flag_value="0")
-@click.option("--preserve-active", "is_active", flag_value="N", default=True)
 @injector.inject
-def update(dataset_type, dataset_id, xml_file, is_active, dfm: DatasetFileManager = None):
-    if is_active == "1":
-        is_active = True
-    elif is_active == "0":
+def create(dataset_type, dataset_id, xml_file, is_active, dfm: DatasetFileManager = None):
+    if is_active == "0":
         is_active = False
     else:
-        is_active = None
+        is_active = True
     with open(xml_file, "r") as h:
         dfm.add_dataset(dataset_type, dataset_id, xml_file, is_active)
         print("Dataset created")

@@ -53,7 +53,7 @@ def create_dataset(dfm: DatasetFileManager = None):
     if "xml" not in body:
         logging.getLogger("erddaptools.app").error("Missing XML content from request")
         return flask.Response("Missing XML", status=400)
-    is_active = None
+    is_active = True
     if "is_active" in body:
         is_active = body['is_active']
     try:
