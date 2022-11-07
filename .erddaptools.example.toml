@@ -1,0 +1,23 @@
+[erddaptools.dsm]
+dataset_file = "/path/to/datasets.xml"
+lock_retries = 5
+lock_retry_delay = 0.5
+
+[logging]
+version = 1
+
+[logging.root]
+level = "INFO"
+handlers = ["console"]
+
+[logging.handlers.console]
+class = "logging.StreamHandler"
+formatter = "brief"
+level = "WARNING"
+stream = "ext://sys.stdout"
+
+[logging.formatters.brief]
+format = "%(message)s [%(levelname)s]"
+
+[flask]
+SECRET_KEY = "ChangeThis"
